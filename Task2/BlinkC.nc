@@ -57,6 +57,7 @@ module BlinkC @safe()
 implementation
 {
 	uint8_t count = 0;
+	uint8_t tmp = 0;
 
 	event void Boot.booted()
 	{
