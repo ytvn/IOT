@@ -56,8 +56,7 @@ module BlinkC @safe()
 }
 implementation
 {
-	uint8_t on = 2;
-	uint8_t off = 0;
+	uint8_t count = 0;
 
 	event void Boot.booted()
 	{
@@ -67,26 +66,23 @@ implementation
   	event void Timer0.fired()
   	{
 		//dbg("BlinkC", "Timer 0 fired @ %s.\n", sim_time_string());
-
-		if (on>0 and off==0)
-		{
+		count = i%6;
+		if(count ==1 || count ==2){
 			call Leds.led0On();
-			call Leds.led1On();
-			call Leds.led2On();
-			on -=1;
-			if( on==0)
-				off=2;
-		}
-		elif (off>0 and on ==0)
-		{
-			call Leds.led0Off();
 			call Leds.led1Off();
 			call Leds.led2Off();
-			off -=1;
-			if (off==0)
-				on=2;
 		}
-	}
+		else if( count ==3 || count ==4){
+			call Leds.led0Off();
+			call Leds.led1On();
+			call Leds.led2Off();
+		}
+		else if( count ==5 || count ==0){
+			call Leds.led0Off();
+			call Leds.led1Off();
+			call Leds.led2On();
+		}
+		count ++;
 }
 
 
