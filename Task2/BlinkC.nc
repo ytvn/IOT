@@ -66,18 +66,18 @@ implementation
   	event void Timer0.fired()
   	{
 		//dbg("BlinkC", "Timer 0 fired @ %s.\n", sim_time_string());
-		count = i%6;
-		if(count ==1 || count ==2){
+		tmp = count%6;
+		if(tmp ==1 || tmp ==2){
 			call Leds.led0On();
 			call Leds.led1Off();
 			call Leds.led2Off();
 		}
-		else if( count ==3 || count ==4){
+		else if( tmp ==3 || tmp ==4){
 			call Leds.led0Off();
 			call Leds.led1On();
 			call Leds.led2Off();
 		}
-		else if( count ==5 || count ==0){
+		else if( tmp ==5 || tmp ==0){
 			call Leds.led0Off();
 			call Leds.led1Off();
 			call Leds.led2On();
